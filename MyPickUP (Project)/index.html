@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPickUp - Sewa Jasa PickUp</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- LOADING SCREEN -->
+    <div class="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo" onclick="scrollToHome()">
+                <span class="logo-icon"></span>
+                MyPickUp
+            </a>
+            <div class="nav-right">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="nav-menu" id="navMenu">
+                    <a href="#home" onclick="closeMenu()" class="nav-link">🏠 Beranda</a>
+                    <a href="#features" onclick="closeMenu()" class="nav-link">⭐ Fitur</a>
+                    <a href="#dokumentasi" onclick="closeMenu()" class="nav-link">📸 Dokumentasi</a>
+                    <a href="#testimoni" onclick="closeMenu()" class="nav-link">💬 Testimoni</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/6281339846494?text=Saya%20ingin%20sewa%20jasa%20pickUp%20MyPickUp" 
+       class="whatsapp-float" id="whatsappFloat" target="_blank">
+        💬
+    </a>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Sewa Jasa PickUp <span class="gradient-text">Terpercaya</span></h1>
+                <p class="hero-subtitle">Antar jemput barang aman cepat dan terpercaya • Bali-Jawa-NTB • Harga terjangkau</p>
+                <div class="hero-buttons">
+                    <a href="#features" class="btn-primary">🚀 Lihat Fitur</a>
+                    <a href="https://wa.me/6281339846494" class="btn-secondary" target="_blank">💬 Chat WA</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- DOKUMENTASI SECTION -->
+<section id="dokumentasi" class="dokumentasi-section">
+    <div class="container">
+        <div class="dokumentasi-header">
+            <h2 class="section-title">📸 Dokumentasi Layanan</h2>
+            <p class="dokumentasi-subtitle">Lihat dokumentasi pelayanan kami</p>
+            
+            <!-- Admin Controls -->
+            <div class="admin-controls" id="adminControls" style="display: none;">
+                <button class="admin-btn add-photo-btn" onclick="showUploadModal()">
+                    <span>+</span> Tambah Foto
+                </button>
+                <div class="admin-info">
+                    <span class="admin-badge">🛠️ Admin Mode</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Grid (Simple Grid) -->
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Foto akan diisi oleh JavaScript -->
+        </div>
+
+        <!-- Upload Modal -->
+        <div class="upload-modal" id="uploadModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>📤 Upload Foto Dokumentasi</h3>
+                    <button class="close-modal" onclick="closeUploadModal()">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="upload-zone" id="docUploadZone">
+                        <input type="file" id="docImageInput" accept="image/*" multiple style="display: none;">
+                        <div class="upload-icon">📷</div>
+                        <p>Drag & drop foto atau klik untuk upload</p>
+                        <small>Format: JPG, PNG (Max 5MB per foto)</small>
+                    </div>
+                    <div class="upload-preview" id="docUploadPreview"></div>
+                    
+                    <div class="upload-info">
+                        <input type="text" id="photoTitle" placeholder="Judul foto (opsional)" maxlength="100">
+                        <textarea id="photoDescription" placeholder="Deskripsi (opsional)" maxlength="300"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-cancel" onclick="closeUploadModal()">Batal</button>
+                    <button class="btn-upload" id="uploadDocBtn" onclick="uploadDocumentationPhotos()" disabled>
+                        Upload Foto
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HIGHLIGHT TESTIMONI -->
+<section id="testimoni-highlight" class="testimoni-highlight">
+    <div class="container">
+        <div class="highlight-header">
+            <div class="trust-badge">
+                <span class="badge-star">⭐</span>
+                <div class="badge-text">
+                    <h3>Excellent</h3>
+                    <p class="badge-subtitle">Berdasarkan <span class="review-count">131.818</span> Ulasan</p>
+                </div>
+            </div>
+            
+            <div class="highlight-controls">
+                <button class="control-btn prev-btn" onclick="slideTestimoni('prev')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+                <button class="control-btn next-btn" onclick="slideTestimoni('next')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Testimoni Slider -->
+        <div class="testimoni-slider">
+            <div class="slider-track" id="sliderTrack">
+                <!-- Testimoni cards akan diisi oleh JavaScript -->
+            </div>
+        </div>
+
+        <!-- Dots Indicator -->
+        <div class="slider-dots" id="sliderDots">
+            <!-- Dots akan diisi oleh JavaScript -->
+        </div>
+
+        <!-- Filter Toggle -->
+        
+        <div class="filter-toggle">
+            <span class="filter-label" id="filterText">Menampilkan ulasan 4 & 5 bintang</span>
+            <label class="switch">
+                <input type="checkbox" id="ratingFilter" checked onclick="toggleRatingFilter()">
+                <span class="slider round"></span>
+            </label>
+        </div>
+</section>
+
+    <!-- FEATURES -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Kenapa Pilih MyPickUp?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Cepat & Aman</h3>
+                    <p>Driver berpengalaman, estimasi tepat waktu, barang terjaga</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Harga Terjangkau</h3>
+                    <p>Tarif kompetitif, transparan, tanpa biaya tersembunyi</p>
+                </div>
+                <div class="feature-card" onclick="document.getElementById('keunggulan').scrollIntoView({behavior:'smooth'});">
+                    <div class="feature-icon">...</div>
+                    <h3>Layanan Kami</h3>
+                    <p>Jasa pindah kos/rumah/kantor, Jasa kirim/antar barang, jasa sewa pickup, lepas kunci/dengan supir</p>
+                </div>
+                <div class="feature-card primary" onclick="document.getElementById('testimoni').scrollIntoView({behavior:'smooth'});">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Testimoni</h3>
+                    <p>Lihat pengalaman pelanggan puas lainnya</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEUNGGULAN LAYANAN -->
+    <section id="keunggulan" class="keunggulan-section">
+        <div class="container keunggulan-grid">
+            <div class="keunggulan-left">
+                <h2 class="keunggulan-title">Keunggulan<br>Layanan Kami</h2>
+                <p class="keunggulan-subtitle">
+                    Kami menawarkan layanan sewa pickup dengan kecepatan, keandalan, dan harga terjangkau.
+                    Dengan mobil terawat dan tim profesional, kami siap melayani kebutuhan angkut barang anda di Bali, Jawa, dan NTB.
+                </p>
+
+                <div class="keunggulan-cards">
+                    <div class="keunggulan-card">
+                        <div class="keunggulan-number">1</div>
+                        <h3 class="keunggulan-card-title">Layanan Cepat<br>dan Tepat Waktu</h3>
+                        <p class="keunggulan-card-text">
+                            Kami memahami pentingnya waktu Anda. Layanan kami selalu cepat dan tepat waktu.
+                        </p>
+                    </div>
+
+                    <div class="keunggulan-card">
+                        <div class="keunggulan-number">2</div>
+                        <h3 class="keunggulan-card-title">PickUp yang Terawat</h3>
+                        <p class="keunggulan-card-text">
+                            Kendaraan pickup yang selalu dalam kondisi prima, terawat dengan baik.
+                        </p>
+                    </div>
+
+                    <div class="keunggulan-card">
+                        <div class="keunggulan-number">3</div>
+                        <h3 class="keunggulan-card-title">Harga Murah dan Terjangkau</h3>
+                        <p class="keunggulan-card-text">
+                            Harga kompetitif, transparan, dan sesuai dengan kualitas layanan. dapat di sewa kan lepas kunci ataupun dengan supir
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="keunggulan-right">
+                <img src="pickup-layanan.jpg" alt="Layanan pickup MyPickUp" class="keunggulan-image">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- TESTIMONI (digabung, di atas footer) -->
+    <section id="testimoni" class="testimoni-section">
+
+            <!-- FORM KOMENTAR -->
+            <div class="comment-container form-container">
+                <h3 class="comment-title">💬 Tambahkan Testimoni Anda</h3>
+                
+                <!-- RATING BINTANG -->
+                <div class="rating-section">
+                    <label>Beri Rating Anda:</label>
+                    <div class="stars-container">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                    <span id="ratingText" class="rating-text">Klik bintang untuk beri rating</span>
+                </div>
+
+                <!-- DRAG & DROP UPLOAD -->
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;" multiple>
+                    <div class="upload-placeholder">
+                        <span class="upload-icon">📷</span>
+                        <p>Drag & drop foto atau klik untuk upload (Max 3 foto)</p>
+                        <small>Format: JPG, PNG (Max 5MB per foto)</small>
+                    </div>
+                    <div id="previewContainer" class="preview-container"></div>
+                </div>
+
+                <!-- NAMA USER -->
+                <input type="text" id="userName" placeholder="Nama Anda (Opsional)" maxlength="50">
+
+                <!-- KOMENTAR TEXTAREA -->
+                <textarea id="commentInput" placeholder="Ceritakan pengalaman Anda dengan MyPickUp..." maxlength="500"></textarea>
+                
+                <div class="form-actions">
+                    <span id="charCount">0/500</span>
+                    <button id="submitComment" class="btn-primary submit-btn" disabled>
+                    Kirim Testimoni
+                        </button>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <h2 class="section-title">Testimoni Pelanggan</h2>
+
+            <!-- DAFTAR KOMENTAR (dinamis dari JS) -->
+            <div class="testimoni-grid comments-list" id="commentsList">
+                <!-- Komentar akan dirender lewat script.js -->
+            </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-overlay"></div>
+      <div class="footer-content">
+        <!-- Kolom kiri: logo + teks -->
+        <div class="footer-left">
+          <div class="footer-logo">MyPickUp</div>
+          <p class="footer-text">
+            Solusi penyewaan pickup Denpasar Bali untuk keperluan angkut barang, kirim atau antar barang, pindah kos atau rumah, buang puing bangunan, dan banyak lagi.
+          </p>
+          <p class="footer-address">
+            📍 Jl. Gunung Talang, Padangsambian, Kec. Denpasar Bar., Kota Denpasar, Bali 80119
+          </p>
+          <p class="footer-phone">
+            📞 0813 3984 6494
+          </p>
+        </div>
+
+        <!-- Kolom kanan: Google Maps -->
+        <div class="footer-right">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=Jl. Gunung Talang, Padangsambian, Kec. Denpasar Bar., Kota Denpasar, Bali 80119"
+            width="100%" height="260" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>MyPickUp © 2025 All Right Reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
